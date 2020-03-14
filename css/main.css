@@ -1,0 +1,50 @@
+#carouselExampleInterval{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;   
+}
+#carouselExampleInterval img{
+    filter: brightness(50%);
+}
+
+.carousel-item{
+    height: 100vh;
+    min-height: 300px;
+}
+.carousel-caption{
+    height: 70vh;
+}
+.carousel-caption h5{
+    color: #e9e9e9     ;
+    font-size: 50px;
+    font-family: 'Lobster', cursive;
+    letter-spacing: 2px;
+    margin-top: 25px;
+}
+
+.carousel-caption p{
+    
+    color: #e9e9e9     ;
+    font-size: 25px;
+    font-family: 'font92889'    , Arial;
+}
+
+#cont{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden; 
+}
+
+#carouselExampleControls img{
+    filter: brightness(20%);
+}
+
+.navbar a{
+    font-family: 'Lobster', cursive;
+      font-size: 30px;
+      float:center;
+      color: #a0a0a0 !important;
+  }
+  .nav-link{
+      color: #a0a0a0 !important;
+  }
