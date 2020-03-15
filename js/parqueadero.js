@@ -7,14 +7,17 @@ let vehiculos = [
         tipo: "Moto",
         color: "Negro",
         marca: "ss",
-        fechaIngreso: "00",
+        fecha: "00",
         precio: 100,
-        horaIngreso:"0"
+        hora: "0"
     }
 ]
 
 let vehiculoTemporal = null
 
+/*
+    obtenemos los valores de los campos
+*/
 function obtenerValores() {
     let placa = document.getElementById("id").value
     let ciudad = document.getElementById("ciudadPlaca").value
@@ -25,6 +28,9 @@ function obtenerValores() {
     let hora = document.getElementById("hora").value
 
 
+    /*
+        para saber que tipo de vehículo es y asignarle el precio
+    */
     if (tipo === "carro") {
         let precio = 8000
         let vehiculo = { placa, ciudad, tipo, color, marca, fecha, precio, hora }
@@ -49,6 +55,9 @@ function obtenerValores() {
     }
 }
 
+/*
+creamos el vehículo con los campos ya obtenidos y validamos que ese vehículo no este 
+*/
 function crearVehiculo() {
     let vehiculo = obtenerValores()
     console.log(vehiculo);
@@ -61,9 +70,12 @@ function crearVehiculo() {
     localStorage.setItem('vehiculos', JSON.stringify(vehiculos));
     listarVehiculos()
     limpiarFormulario()
-    
+
 }
 
+/*
+    listamos los vehículos que tenemos en el array
+*/
 function listarVehiculos() {
     let lista = document.getElementById("listaVehiculos")
     let data = ""
@@ -77,13 +89,16 @@ function listarVehiculos() {
         data += `<td>${miVehiculo.marca} </td>`
         data += `<td>${miVehiculo.fecha} </td>`
         data += `<td>${miVehiculo.hora} </td>`
-        data += `<td><button type="button" onclick="cargarInformacion(${i})" class="btn btn-primary btn-sm">Editar</button> </td>`
+        data += `<td><button type="button" onclick="cargarInformacion('${i}')" class="btn btn-primary btn-sm">Editar</button> </td>`
         data += '<td><button type="button" onclick="eliminarVehiculo(' + i + ')" class="btn btn-primary btn-sm">Eliminar</button> </td>'
         data += "</tr>"
     }
     lista.innerHTML = data
 }
 
+/*
+    para limpiar el formualario despues de agregar un vehículo
+*/
 function limpiarFormulario() {
 
     document.getElementById("id").value = ""
@@ -94,17 +109,22 @@ function limpiarFormulario() {
     document.getElementById("fecha").value = ""
     document.getElementById("hora").value = ""
 
-
     document.getElementById("btnCrear").style.display = "inline"
     document.getElementById("btnEditar").style.display = "none"
 }
 
+/*
+    eliminamos un vehiculo pasando su placa como parametro
+*/
 function eliminarVehiculo(index) {
     vehiculos.splice(index, 1)
     localStorage.setItem('vehiculos', JSON.stringify(vehiculos));
     listarVehiculos()
 }
 
+/* 
+    cargar la información del vehículo que queremos editar
+*/
 function cargarInformacion(index) {
     let vehiculo = vehiculos[index]
     vehiculoTemporal = index
@@ -120,18 +140,26 @@ function cargarInformacion(index) {
     document.getElementById("btnEditar").style.display = "inline"
 }
 
+/*
+     guardar el vehículo con los nuevos valores
+*/
 function actualizarVehiculo() {
     let vehiculoActualizado = obtenerValores()
     vehiculos.splice(vehiculoTemporal, 1, vehiculoActualizado)
     localStorage.setItem('vehiculos', JSON.stringify(vehiculos));
+    document.getElementById("btnCrear").style.display = "none"
+    document.getElementById("btnEditar").style.display = "inline"
     listarVehiculos(limpiarFormulario)
 }
 
-function localStorag(){
+/*
+    guardar en el local storage para la persistencia de los datos
+*/
+function localStorag() {
     var datos = JSON.parse(localStorage.getItem('vehiculos'));
-    if(datos === null){
+    if (datos === null) {
         vehiculos = [];
-    }else{
+    } else {
         vehiculos = datos;
     }
 }

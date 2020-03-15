@@ -1,0 +1,19 @@
+
+.bg{
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+    background:grey;
+}
+
+h1{
+    font-family: font92889;
+    background-color: gray;
+    color:blue;
+    margin-top: -500px;
+    margin-right: 10px;
+    font-size: 50px;
+    text-align: center;
+}
